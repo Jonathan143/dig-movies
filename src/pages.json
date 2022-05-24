@@ -1,16 +1,36 @@
 {
-  "pages": [
-    {
-      "path": "pages/home/index",
-      "style": {
-        "navigationBarTitleText": "掘影"
-      }
-    }
-  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "掘影",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "pages": [
+    {
+      "path": "pages/home/home",
+      "style": { "navigationBarTitleText": "掘影" }
+    },
+    {
+      "path": "pages/home/my",
+      "style": { "navigationBarTitleText": "我的" }
+    }
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#FFB849",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/image/icon_home.png",
+        "selectedIconPath": "static/image/icon_home_selected.png"
+      },
+      {
+        "pagePath": "pages/home/my",
+        "iconPath": "static/image/icon_my.png",
+        "selectedIconPath": "static/image/icon_my_selected.png"
+      }
+    ]
   }
 }
