@@ -1,0 +1,23 @@
+{
+  "extends": ["@antfu", "prettier"],
+  "rules": {
+    "@typescript-eslint/brace-style": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "antfu/if-newline": "off",
+    "arrow-parens": "off",
+    "no-alert": "off",
+    "no-console": "off",
+    "no-new": "off",
+    "operator-linebreak": "off",
+    "quote-props": "off",
+    "react/prop-types": "off",
+    "space-before-function-paren": "off",
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": [["script", "template"], "style"]
+      }
+    ]
+  }
+}

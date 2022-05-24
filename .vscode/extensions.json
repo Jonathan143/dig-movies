@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "voorjaar.windicss-intellisense",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens"
+  ]
+}
