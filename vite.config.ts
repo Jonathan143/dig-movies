@@ -10,7 +10,13 @@ export default defineConfig({
     uni(),
     WindiCSS(),
     AutoImport({
-      imports: ['vue', 'uni-app', {}],
+      imports: [
+        'vue',
+        'uni-app',
+        {
+          '@/plugins/request': ['request'],
+        },
+      ],
       dts: './src/auto-imports.d.ts',
     }),
   ],

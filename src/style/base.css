@@ -6,6 +6,8 @@ page {
 }
 
 view,
+cover-view,
+cover-image,
 ::before,
 ::after {
   box-sizing: border-box;
