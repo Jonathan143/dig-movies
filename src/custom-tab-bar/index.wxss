@@ -1,0 +1,28 @@
+.tab-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  justify-content: space-between;
+  position: fixed;
+  left: 60rpx;
+  overflow: hidden;
+  bottom: 52rpx;
+  width: 630rpx;
+  height: 126rpx;
+  background: #fff;
+  border-radius: 126rpx;
+}
+
+.tab-bar__item {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-bar__item--active {
+  color: rgba(53, 68, 196, 1);
+  background-color: rgba(245, 246, 247, 1);
+}

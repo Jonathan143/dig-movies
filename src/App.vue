@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onHide, onLaunch, onShow } from '@dcloudio/uni-app'
 onLaunch(() => {
+  uni.hideTabBar()
   console.log('App Launch')
 })
 onShow(() => {

@@ -11,6 +11,14 @@
       "style": { "navigationBarTitleText": "掘影" }
     },
     {
+      "path": "pages/home/like",
+      "style": { "navigationBarTitleText": "喜欢" }
+    },
+    {
+      "path": "pages/home/message",
+      "style": { "navigationBarTitleText": "消息" }
+    },
+    {
       "path": "pages/home/my",
       "style": { "navigationBarTitleText": "我的" }
     }
@@ -22,14 +30,16 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/home/home",
-        "iconPath": "static/image/icon_home.png",
-        "selectedIconPath": "static/image/icon_home_selected.png"
+        "pagePath": "pages/home/home"
       },
       {
-        "pagePath": "pages/home/my",
-        "iconPath": "static/image/icon_my.png",
-        "selectedIconPath": "static/image/icon_my_selected.png"
+        "pagePath": "pages/home/like"
+      },
+      {
+        "pagePath": "pages/home/message"
+      },
+      {
+        "pagePath": "pages/home/my"
       }
     ]
   }
