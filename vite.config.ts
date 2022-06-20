@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import WindiCSS from 'vite-plugin-windicss'
 import AutoImport from 'unplugin-auto-import/vite'
-import px2rpx from './px2rpx'
+import MiniProgramTailwind from '@dcasia/mini-program-tailwind-webpack-plugin/rollup'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,10 +16,14 @@ export default defineConfig({
         'uni-app',
         {
           '@/plugins/request': ['request'],
+          '@/hooks': ['useRouter'],
+          '@/store/modules': ['useUserStore'],
         },
       ],
       dts: './src/auto-imports.d.ts',
     }),
+
+    MiniProgramTailwind(),
   ],
   resolve: {
     alias: [
@@ -28,11 +32,5 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src'),
       },
     ],
-  },
-
-  css: {
-    postcss: {
-      plugins: [px2rpx()],
-    },
   },
 })

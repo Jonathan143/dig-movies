@@ -9,6 +9,8 @@ export async function request<T = any>({
   showError = true,
   ...options
 }: RequestParams): Promise<[null, T] | [Error, null]> {
+  console.log(url, options.data)
+
   try {
     const { data: response } = (await uni.request({
       ...options,

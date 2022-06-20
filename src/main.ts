@@ -5,8 +5,7 @@ import store from '@/store'
 import '@/style/iconfont.css'
 import '@/style/base.css'
 import '@/style/semantic.scss'
-import 'virtual:windi-components.css'
-import 'virtual:windi-utilities.css'
+import 'virtual:windi.css'
 
 export function createApp() {
   const app = createSSRApp(App)

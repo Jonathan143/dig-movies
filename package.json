@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.23.1",
+    "@dcasia/mini-program-tailwind-webpack-plugin": "^1.4.2",
     "@dcloudio/types": "^3.0.0",
     "@dcloudio/uni-automator": "3.0.0-alpha-3041220220523001",
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3041220220523001",

@@ -1,10 +1,10 @@
 <template>
   <view
-    class="bg-hex-fff flex rounded-63px h-63px left-half px-10px transform -translate-x-half bottom-26px w-315px tab-bar items-center justify-between fixed">
+    class="bg-hex-fff flex rounded-63px h-63px px-10px transform bottom-26px left-1/2 w-315px -translate-x-1/2 tab-bar items-center justify-between fixed">
     <view
       v-for="(tabItem, index) of tabList"
       :key="index"
-      class="rounded-half flex h-52px text-gray-400 w-52px items-center justify-center"
+      class="flex rounded-1/2 h-52px text-gray-400 w-52px items-center justify-center"
       :class="{ 'text-blue-700 bg-gray-300': active === index }"
       @click="onItemClick(tabItem, index)">
       <view class="text-22px iconfont" :class="tabItem.iconfont"></view>
