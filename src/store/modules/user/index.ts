@@ -21,6 +21,7 @@ export const useUserStore = defineStore('user', {
   actions: {
     setInfo(partial: Partial<UserState>) {
       this.$patch(partial)
+      this.updateStorage(partial)
     },
 
     async updateUserInfo() {
@@ -30,12 +31,19 @@ export const useUserStore = defineStore('user', {
       })
       if (!error) {
         this.setInfo(userInfo)
-        wx.setStorage({ key: userStoreKey, data: userInfo })
       }
     },
 
+    updateStorage(partial: Partial<UserState>) {
+      const data = wx.getStorageSync(userStoreKey)
+      wx.setStorage({
+        key: userStoreKey,
+        data: { ...partial, ...(data || {}) },
+      })
+    },
+
     async loadLocalStore() {
-      const data = await wx.getStorageSync(userStoreKey)
+      const data = wx.getStorageSync(userStoreKey)
       data && this.setInfo(data)
     },
   },

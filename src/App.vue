@@ -5,8 +5,6 @@ import { userStoreKey } from '@/store/modules'
 const userStore = useUserStore()
 
 async function login() {
-  console.log(userStore)
-
   if (userStore.openid) return
 
   const { code } = await wx.login()
@@ -21,7 +19,7 @@ async function login() {
 onLaunch(async () => {
   uni.hideTabBar()
   await userStore.loadLocalStore()
-  login()
+  await login()
   console.log('App Launch')
 })
 onShow(() => {
