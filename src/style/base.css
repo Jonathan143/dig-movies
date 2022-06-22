@@ -5,6 +5,10 @@ page {
   font-family: PingFang SC-常规体, PingFang SC;
 }
 
+view {
+  @apply box-border;
+}
+
 button {
   @apply border-none outline-none m-0 ring-inset p-0;
 }

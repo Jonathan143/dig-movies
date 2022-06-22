@@ -5,6 +5,12 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^a-(.*)": "@/components/a-$1/index.vue"
+    }
+  },
   "pages": [
     {
       "path": "pages/home/home",

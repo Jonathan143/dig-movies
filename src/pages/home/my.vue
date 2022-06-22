@@ -10,12 +10,6 @@
 import Container from './components/Container.vue'
 
 async function onLoginClick() {
-  // const { code } = await wx.login()
-  // const res = await request({
-  //   url: 'auth/wechat_mini_code2Session',
-  //   method: 'POST',
-  //   data: { code },
-  // })
   const res = await wx.getUserProfile({ desc: '仅用于页面展示' })
   console.log(res)
 }
