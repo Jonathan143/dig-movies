@@ -8,12 +8,7 @@
       <image v-else class="h-full w-full" src="@/static/img/scan-qr-code.png" />
     </div>
     <div v-if="isLoginSuccessful" class="mt-4 text-blue-500">登录成功</div>
-    <div
-      v-else
-      class="rounded bg-blue-500 mt-4 py-2 px-3 text-light-50 inline-block"
-      @click="onLoginClick">
-      授权登录
-    </div>
+    <a-button v-else @click="onLoginClick">授权登录</a-button>
   </div>
 </template>
 
