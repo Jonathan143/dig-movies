@@ -2,12 +2,16 @@
   <Container :active="3">
     <div class="bg-cover bg-no-repeat h-65 w-full px-6 pt-20 my__header">
       <div
-        class="flex m-auto bg-light-50 rounded-1/2 h-20 text-0 w-20 overflow-hidden items-center justify-center">
+        class="flex m-auto bg-light-50 rounded-1/2 h-27 text-0 w-27 overflow-hidden items-center justify-center">
         <image
           v-if="userStore.avatar"
           class="h-full w-full"
           :src="userStore.avatar" />
         <span v-else class="text-12px" @click="onLoginClick">点击授权</span>
+      </div>
+
+      <div class="mt-6.5 text-center text-light-50 text-26px">
+        {{ userStore.username }}
       </div>
     </div>
   </Container>
@@ -26,6 +30,7 @@ async function onLoginClick() {
     avatar: avatarUrl,
     username: nickName,
   })
+
   console.log(userInfo)
 }
 </script>

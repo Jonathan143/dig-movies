@@ -18,7 +18,7 @@
     },
     {
       "path": "pages/home/like",
-      "style": { "navigationBarTitleText": "喜欢" }
+      "style": { "navigationBarTitleText": "喜欢", "navigationStyle": "custom" }
     },
     {
       "path": "pages/home/message",

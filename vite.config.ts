@@ -16,8 +16,8 @@ export default defineConfig({
         'uni-app',
         {
           '@/plugins/request': ['request'],
-          '@/hooks': ['useRouter'],
-          '@/store/modules': ['useUserStore'],
+          '@/hooks': ['useRouter', 'useLoading'],
+          '@/store/modules': ['useUserStore', 'useMovieStore'],
         },
       ],
       dts: './src/auto-imports.d.ts',

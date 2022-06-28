@@ -2,8 +2,6 @@
   <div class="h-full w-full">
     <slot></slot>
 
-    <div class="h-30"></div>
-
     <TabBar :active="active" />
   </div>
 </template>

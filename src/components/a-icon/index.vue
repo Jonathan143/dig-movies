@@ -40,5 +40,6 @@ const style = computed(() => {
 <style>
 .a-icon {
   @apply h-1em w-1em inline-block align-top;
+  vertical-align: -2px;
 }
 </style>
