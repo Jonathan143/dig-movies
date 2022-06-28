@@ -55,8 +55,11 @@
           </div>
 
           <div class="flex py-3 items-center justify-center">
-            <a-icon name="line-md:loading-twotone-loop" />
-            <span class="ml-1">加载中...</span>
+            <a-icon
+              v-if="!noMore"
+              class="mr-1"
+              name="line-md:loading-twotone-loop" />
+            <span>{{ noMore ? '没有更多了' : '加载中...' }}</span>
           </div>
 
           <div class="h-30"></div>
@@ -72,6 +75,7 @@ import type { MovieInfo } from './types'
 
 const movieStore = useMovieStore()
 const { isLoading, toggleLoading } = useLoading()
+const noMore = ref(false)
 const activeType = ref('movie')
 const typeList = [
   { name: '电影', type: 'movie' },
@@ -89,6 +93,8 @@ function onTabItemClick(type: string) {
 }
 
 async function loadMore() {
+  if (isLoading.value) return
+
   toggleLoading()
   const { index } = page.value
   const [err, data] = await request({
@@ -102,9 +108,10 @@ async function loadMore() {
     },
   })
   if (!err) {
-    const { results, total_results } = data
+    const { results, total_results, total_pages } = data
     movieList.value = movieList.value.concat(results)
     page.value = { index: index + 1, total: total_results }
+    noMore.value = index === total_pages
   }
   toggleLoading()
 }
