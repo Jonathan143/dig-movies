@@ -1,6 +1,8 @@
 /**
  * fade 淡入
  *
+ * fade-zoom 缩放淡入
+ * 
  * fade-up 上滑淡入
  *
  * fade-down 下滑淡入
@@ -23,6 +25,7 @@
  */
 export type AnimationMode =
   | 'fade'
+  | 'fade-zoom'
   | 'fade-up'
   | 'fade-down'
   | 'fade-left'

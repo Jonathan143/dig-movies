@@ -1,3 +1,5 @@
+import type { AnimationMode } from '../a-transition/types';
+
 export const transitionStyleByMode = {
   left: { left: 0, top: 0, height: '100%' },
   top: { left: 0, top: 0, width: '100%' },
@@ -6,7 +8,7 @@ export const transitionStyleByMode = {
   center: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)' },
 }
 
-export const transitionModes = {
+export const transitionModes: Record<string, AnimationMode> = {
   left: 'slide-left',
   top: 'slide-down',
   right: 'slide-right',
