@@ -1,6 +1,8 @@
 export interface MovieInfo {
   /** 标题 */
   title: string
+  /** 标题 */
+  name: string
   /** 原标题 */
   original_title: string
   /** 简介 */

@@ -22,7 +22,7 @@
     },
     {
       "path": "pages/home/message",
-      "style": { "navigationBarTitleText": "消息" }
+      "style": { "navigationBarTitleText": "消息", "navigationStyle": "custom" }
     },
     {
       "path": "pages/home/my",

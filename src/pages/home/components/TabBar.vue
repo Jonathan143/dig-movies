@@ -1,6 +1,6 @@
 <template>
   <view
-    class="bg-hex-fff flex rounded-63px h-63px px-10px transform bottom-26px left-1/2 w-315px -translate-x-1/2 tab-bar items-center justify-between fixed">
+    class="bg-hex-fff flex rounded-63px h-63px shadow px-10px transform bottom-26px left-1/2 w-315px -translate-x-1/2 tab-bar items-center justify-between fixed">
     <view
       v-for="(tabItem, index) of tabList"
       :key="index"

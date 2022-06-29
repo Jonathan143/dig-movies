@@ -1,5 +1,7 @@
 <template>
-  <div class="rounded flex bg-gray-200 w-full p-1 a-tabs items-center relative">
+  <div
+    class="rounded flex w-full p-1 a-tabs items-center relative"
+    :style="{ background: bgColor }">
     <div
       class="rounded transition-transform top-1 left-1 duration-300 absolute"
       :style="[sliderStyle, { background: sliderBg }]"></div>
@@ -51,12 +53,19 @@ const props = withDefaults(
      * 默认 `#fff`
      * */
     sliderBg?: string
+    /**
+     * 背景色
+     *
+     * 默认 `#eee`
+     */
+    bgColor?: string
   }>(),
   {
     inactiveColor: '#616161',
     activeColor: '#2588ff',
     keyName: 'name',
     sliderBg: '#fff',
+    bgColor: '#eee',
   },
 )
 
