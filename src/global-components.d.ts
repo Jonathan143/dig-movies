@@ -9,8 +9,8 @@ declare module '@vue/runtime-core' {
     AIcon: typeof import('./components/a-icon/index.vue')['default']
     APopup: typeof import('./components/a-popup/index.vue')['default']
     ATransition: typeof import('./components/a-transition/index.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
+    ARate: typeof import('./components/a-rate/index.vue')['default']
+    ATabs: typeof import('./components/a-tabs/index.vue')['default']
   }
 }
 
