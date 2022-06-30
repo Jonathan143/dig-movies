@@ -14,6 +14,14 @@
         {{ userStore.username }}
       </div>
     </div>
+
+    <div class="rounded-12px mx-4 mt-2 overflow-hidden">
+      <a-cell label="关于掘影" :value="appVersion">
+        <template #leftIcon>
+          <a-icon name="twemoji:cowboy-hat-face" multicolor />
+        </template>
+      </a-cell>
+    </div>
   </Container>
 </template>
 
@@ -21,6 +29,7 @@
 import Container from './components/Container.vue'
 
 const userStore = useUserStore()
+const appVersion = `版本${uni.getAccountInfoSync().miniProgram.version}`
 
 async function onLoginClick() {
   const { userInfo } = await wx.getUserProfile({ desc: '仅用于页面展示' })
@@ -33,6 +42,8 @@ async function onLoginClick() {
 
   console.log(userInfo)
 }
+
+onLoad(() => {})
 </script>
 
 <style lang="scss" scoped>

@@ -22,55 +22,29 @@
           class="h-full bg-light-50"
           @scrolltolower="loadMore">
           <div class="mx-6">
-            <div
+            <MovieItem
               v-for="movieItem of movieList"
               :key="movieItem.id"
-              class="border-b border-solid flex border-0 border-hex-dee2ee py-6">
-              <div class="flex-shrink-0 text-0">
-                <image
-                  class="rounded-13px h-36 w-29"
-                  :src="`https://image.tmdb.org/t/p/w200/${movieItem.poster_path}`" />
-              </div>
-
-              <div class="flex-1 pl-5">
-                <div class="font-500 text-dark-500 text-16px leading-6">
-                  {{ movieItem.title || movieItem.name }}
-                </div>
-
-                <!-- 评分 -->
-                <div class="flex mt-2 text-12px items-center">
-                  <a-rate
-                    :model-value="Math.round(movieItem.vote_average / 2)" />
-                  <div class="ml-2 text-gray-500">
-                    {{ movieItem.vote_average }}
-                  </div>
-                </div>
-
-                <!-- 类别 -->
-                <div class="flex flex-wrap mt-2 items-center">
-                  <div
-                    v-for="genre of movieItem.genre_ids"
-                    :key="genre"
-                    class="border-solid border rounded border-gray-200 mr-1 mb-1 py-1.5 px-3 text-gray-700 text-10px">
-                    {{ movieStore.genres[genre] }}
-                  </div>
-                </div>
-
-                <!-- 简介 -->
-                <div
-                  class="mt-2 text-gray-700 text-12px text-truncate-3 leading-4 indent">
-                  {{ movieItem.overview }}
-                </div>
-              </div>
-            </div>
+              :data="movieItem" />
           </div>
 
-          <div class="flex py-3 items-center justify-center">
+          <div v-if="isEmpty" class="flex pt-20 justify-center">
+            <image
+              class="h-56 w-60"
+              :src="`../../static/img/${
+                isLoadError ? 'not_found' : 'void'
+              }.svg`"
+              @click="loadMore" />
+          </div>
+
+          <div
+            class="flex py-3 text-13px text-gray-700 items-center justify-center">
             <a-icon
-              v-if="!noMore"
+              v-show="isLoading"
               class="mr-1"
               name="line-md:loading-twotone-loop" />
-            <span>{{ noMore ? '没有更多了' : '加载中...' }}</span>
+            <span v-if="isLoadError" @click="loadMore">点击重新加载</span>
+            <span v-else>{{ noMore ? '没有更多了' : '加载中...' }}</span>
           </div>
 
           <div class="h-30"></div>
@@ -83,9 +57,10 @@
 <script setup lang="ts">
 import Container from './components/Container.vue'
 import type { MovieInfo } from './types'
+import MovieItem from './components/MovieItem.vue'
 
-const movieStore = useMovieStore()
 const { isLoading, toggleLoading } = useLoading()
+const isLoadError = ref(false)
 const noMore = ref(false)
 const activeType = ref('movie')
 const typeList = [
@@ -99,6 +74,8 @@ const page = ref({
   total: 0,
 })
 
+const isEmpty = computed(() => !movieList.value.length)
+
 function onTabItemClick(type: string) {
   activeType.value = type
   page.value.index = 1
@@ -109,6 +86,7 @@ function onTabItemClick(type: string) {
 async function loadMore() {
   if (isLoading.value) return
 
+  isLoadError.value = false
   toggleLoading()
   const { index } = page.value
   const [err, data] = await request({
@@ -126,6 +104,8 @@ async function loadMore() {
     movieList.value = movieList.value.concat(results)
     page.value = { index: index + 1, total: total_results }
     noMore.value = index === total_pages
+  } else {
+    isLoadError.value = true
   }
   toggleLoading()
 }

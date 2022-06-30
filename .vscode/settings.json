@@ -11,6 +11,5 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "errorLens.enabledDiagnosticLevels": ["warning", "error"],
-  "errorLens.excludeBySource": ["cSpell", "Grammarly", "eslint"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "errorLens.excludeBySource": ["cSpell", "Grammarly", "eslint"]
 }

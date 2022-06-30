@@ -11,7 +11,8 @@ declare module '@vue/runtime-core' {
     ATransition: typeof import('./components/a-transition/index.vue')['default']
     ARate: typeof import('./components/a-rate/index.vue')['default']
     ATabs: typeof import('./components/a-tabs/index.vue')['default']
+    ACell: typeof import('./components/a-cell/index.vue')['default']
   }
 }
 
-export { }
+export {}

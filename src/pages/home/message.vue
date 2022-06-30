@@ -2,7 +2,7 @@
   <Container :active="2">
     <div class="flex-col flex h-full">
       <div class="flex-shrink-0 px-7 pb-6">
-        <div class="font-500 pt-18 pb-10 text-23px">Favourite</div>
+        <div class="font-500 pt-18 pb-10 text-23px">Message</div>
 
         <div class="w-60">
           <a-tabs
@@ -17,11 +17,11 @@
         <scroll-view scroll-y class="h-full">
           <div
             class="flex p-6 items-center justify-center"
-            style="height: calc(100% - 100px)">
+            style="height: calc(100% - 120px)">
             <image class="h-56 w-60" src="@/static/img/light_the_fire.svg" />
           </div>
 
-          <!-- <div class="h-30"></div> -->
+          <div class="h-30"></div>
         </scroll-view>
       </div>
     </div>
