@@ -2,14 +2,16 @@
   <div
     class="rounded flex w-full p-1 a-tabs items-center relative"
     :style="{ background: bgColor }">
+    <!-- 滑块 -->
     <div
       class="rounded transition-transform top-1 left-1 duration-300 absolute"
       :style="[sliderStyle, { background: sliderBg }]"></div>
+
     <div
       v-for="(item, index) of list"
       id="a-tab-item"
       :key="index"
-      class="flex-1 text-14px z-1"
+      class="flex-1 flex-shrink-0 text-14px z-1"
       @click="onTabItemClick(item, index)">
       <div
         class="rounded text-center py-2.5"
@@ -90,8 +92,8 @@ onMounted(() => {
     .select('#a-tab-item')
     .boundingClientRect(({ width = 0, height = 0 }) => {
       sliderStyle.value = {
-        width: `${width * 2}rpx`,
-        height: `${height * 2}rpx`,
+        width: `${width}px`,
+        height: `${height}px`,
       }
     })
     .exec()
