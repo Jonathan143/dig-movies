@@ -22,3 +22,9 @@ export interface MovieInfo {
   /** 评分数 */
   vote_count: number
 }
+
+/** 媒体类型 */
+export type MediaType = 'all' | 'movie' | 'tv' | 'person'
+
+/** 时间类型 */
+export type TimeWindow = 'day' | 'week'

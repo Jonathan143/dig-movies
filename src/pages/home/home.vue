@@ -1,47 +1,140 @@
 <template>
   <Container :active="0">
-    <div class="flex flex-wrap">
-      <div v-for="icon of iconList" :key="icon" class="p-2 text-32px">
-        <a-icon :name="`line-md:${icon}`" />
+    <div class="home">
+      <div class="flex p-6 text-24px items-center">
+        <div>趋势</div>
+        <div class="px-3 w-34">
+          <a-tabs
+            v-model="activeTab"
+            :list="tabList"
+            :disabled="isLoading"
+            @change="onTabChange" />
+        </div>
+        <a-icon
+          v-show="isLoading"
+          color="#2588ff"
+          name="line-md:loading-twotone-loop" />
       </div>
-    </div>
+      <scroll-view scroll-x>
+        <div class="flex px-6">
+          <div v-for="media of mediaList" :key="media.id" class="mr-6">
+            <div class="text-0 relative">
+              <image
+                class="rounded-22px h-65 w-50"
+                :src="`https://image.tmdb.org/t/p/w440_and_h660_face/${media.poster_path}`"
+                lazy-load />
 
-    <div class="flex justify-center">
-      <div
-        class="rounded m-auto bg-blue-500 mt-6 py-3 px-3 text-light-50 text-12px inline-block"
-        @click="onLoadMoreClick">
-        load more
-      </div>
-    </div>
+              <div
+                class="flex bg-light-50 bg-opacity-19 rounded-16px py-1 px-3 top-4 left-4 text-light-50 absolute items-center backdrop-filter backdrop-blur-20">
+                <a-icon name="bi:star-fill" />
+                <text class="ml-1.5 text-14px">
+                  {{ media.vote_average.toFixed(1) }}
+                </text>
+              </div>
+            </div>
 
-    <div class="h-30"></div>
+            <div class="mt-2">{{ media.name || media.title }}</div>
+          </div>
+        </div>
+      </scroll-view>
+
+      <div class="p-6 text-24px">即将上映</div>
+      <scroll-view scroll-x>
+        <div class="flex px-6">
+          <div v-for="media of upcoming" :key="media.id" class="mr-6">
+            <div class="text-0 relative">
+              <image
+                class="rounded-22px h-65 w-50"
+                :src="`https://image.tmdb.org/t/p/w440_and_h660_face/${media.poster_path}`"
+                lazy-load />
+
+              <div
+                class="flex bg-light-50 bg-opacity-19 rounded-16px py-1 px-3 top-4 left-4 text-light-50 absolute items-center backdrop-filter backdrop-blur-20">
+                <a-icon name="bi:star-fill" />
+                <text class="ml-1.5 text-14px">
+                  {{ media.vote_average.toFixed(1) }}
+                </text>
+              </div>
+            </div>
+
+            <div class="mt-2">{{ media.name || media.title }}</div>
+            <div class="mt-1 text-gray-500 text-12px">
+              {{ media.release_date }}
+            </div>
+          </div>
+        </div>
+      </scroll-view>
+
+      <div class="h-30"></div>
+    </div>
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from './components/Container.vue'
-import iconJson from '@/components/a-icon/icon.json'
+import type { MediaType, MovieInfo, TimeWindow } from './types'
 
-const iconList = ref(iconJson.slice(0, 20))
-const page = {
-  index: 1,
-  size: 20,
-  total: iconJson.length,
+const { isLoading, toggleLoading } = useLoading()
+const mediaType = ref<MediaType>('all')
+const timeWindow = ref<TimeWindow>('day')
+const mediaList = ref<MovieInfo[]>([])
+const upcoming = ref<MovieInfo[]>([])
+
+const activeTab = ref(0)
+const tabList = [
+  { name: '今日', key: 'day' },
+  { name: '本周', key: 'week' },
+]
+
+function onTabChange({ key = 'day' }, index: number) {
+  timeWindow.value = key as TimeWindow
+  reFindTrending()
 }
 
-function onLoadMoreClick() {
-  const { index, size, total } = page
-  const length = iconList.value.length
-  if (length >= total) {
-    uni.showToast({ icon: 'none', title: '没有更多了' })
-    return
+async function reFindTrending() {
+  if (isLoading.value) return
+
+  toggleLoading()
+  const [err, data] = await request({
+    url: 'post/movie_db',
+    method: 'POST',
+    data: {
+      api: `/trending/${mediaType.value}/${timeWindow.value}`,
+      params: {},
+    },
+  })
+  if (err) {
+    console.log(err)
+  } else {
+    const { results } = data
+    mediaList.value = results
   }
-  iconList.value = [
-    ...iconList.value,
-    ...iconJson.slice(index * size, size + length),
-  ]
-  page.index++
+
+  toggleLoading()
 }
+
+/** 即将上映 */
+async function reFindUpcoming() {
+  const [err, data] = await request({
+    url: 'post/movie_db',
+    method: 'POST',
+    data: {
+      api: `/movie/upcoming`,
+      params: { page: 1 },
+    },
+  })
+  if (err) {
+    console.log(err)
+  } else {
+    const { results } = data
+    upcoming.value = results
+  }
+}
+
+onLoad(() => {
+  reFindTrending()
+  reFindUpcoming()
+})
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>

@@ -5,11 +5,7 @@
         <div class="font-500 pt-18 pb-10 text-23px">Message</div>
 
         <div class="w-60">
-          <a-tabs
-            v-model="activeTab"
-            class="tabs-shadow"
-            :list="tabList"
-            @change="onTabChange" />
+          <a-tabs v-model="activeTab" :list="tabList" @change="onTabChange" />
         </div>
       </div>
 

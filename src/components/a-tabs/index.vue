@@ -61,6 +61,7 @@ const props = withDefaults(
      * 默认 `#eee`
      */
     bgColor?: string
+    disabled?: boolean
   }>(),
   {
     inactiveColor: '#616161',
@@ -68,6 +69,7 @@ const props = withDefaults(
     keyName: 'name',
     sliderBg: '#fff',
     bgColor: '#eee',
+    disabled: false,
   },
 )
 
@@ -79,7 +81,7 @@ const emit = defineEmits<{
 const sliderStyle = ref<CSSProperties>({})
 
 function onTabItemClick(item: Record<string, any>, index: number) {
-  if (index === props.modelValue) return
+  if (index === props.modelValue || props.disabled) return
 
   sliderStyle.value.transform = `translateX(${100 * index}%)`
   emit('update:modelValue', index)

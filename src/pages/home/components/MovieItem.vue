@@ -3,7 +3,7 @@
     <div class="flex-shrink-0 text-0">
       <image
         class="rounded-13px h-36 w-29"
-        :src="`https://image.tmdb.org/t/p/w200/${data.poster_path}`" />
+        :src="`https://image.tmdb.org/t/p/w440_and_h660_face/${data.poster_path}`" />
     </div>
 
     <div class="flex-1 pl-5">
