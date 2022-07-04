@@ -10,6 +10,8 @@
 import TabBar from './Tabbar.vue'
 
 defineProps<{ active: number }>()
+
+uni.hideTabBar()
 </script>
 
 <style lang="scss" scoped></style>

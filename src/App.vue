@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onHide, onLaunch, onShow } from '@dcloudio/uni-app'
 import { userStoreKey } from '@/store/modules'
 
 const userStore = useUserStore()
@@ -17,16 +16,11 @@ async function login() {
 }
 
 onLaunch(async () => {
-  uni.hideTabBar()
+  const page = uni.getLaunchOptionsSync()
+  page.path?.startsWith('pages/home') && uni.hideTabBar()
+
   await userStore.loadLocalStore()
   await login()
-  console.log('App Launch')
-})
-onShow(() => {
-  console.log('App Show')
-})
-onHide(() => {
-  console.log('App Hide')
 })
 </script>
 
