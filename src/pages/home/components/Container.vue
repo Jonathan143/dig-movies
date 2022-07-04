@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import TabBar from './TabBar.vue'
+import TabBar from './Tabbar.vue'
 
 defineProps<{ active: number }>()
 </script>
