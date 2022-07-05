@@ -7,6 +7,7 @@ async function login() {
   if (userStore.openid) return
 
   const { code } = await wx.login()
+  if (code.includes('mock')) return
   const [error, data] = await request({
     url: 'auth/wechat_mini_code2Session',
     method: 'POST',
