@@ -25,7 +25,9 @@
             <MovieItem
               v-for="movieItem of movieList"
               :key="movieItem.id"
-              :data="movieItem" />
+              :type="activeType"
+              :data="movieItem"
+              @click="onMovieItemClick" />
           </div>
 
           <div v-if="isEmpty" class="flex pt-20 justify-center">
@@ -56,14 +58,15 @@
 
 <script setup lang="ts">
 import Container from './components/Container.vue'
-import type { MovieInfo } from './types'
+import type { LikeMediaType, MovieInfo } from './types'
 import MovieItem from './components/MovieItem.vue'
 
+const router = useRouter()
 const { isLoading, toggleLoading } = useLoading()
 const isLoadError = ref(false)
 const noMore = ref(false)
-const activeType = ref('movie')
-const typeList = [
+const activeType = ref<LikeMediaType>('movie')
+const typeList: { name: string; type: LikeMediaType }[] = [
   { name: '电影', type: 'movie' },
   { name: '剧集', type: 'tv' },
 ]
@@ -76,11 +79,15 @@ const page = ref({
 
 const isEmpty = computed(() => !movieList.value.length)
 
-function onTabItemClick(type: string) {
+function onTabItemClick(type: LikeMediaType) {
   activeType.value = type
   page.value.index = 1
   movieList.value = []
   loadMore()
+}
+
+function onMovieItemClick(data: MovieInfo) {
+  router.push({ url: '/pages/detail/movie', params: { id: `${data.id}` } })
 }
 
 async function loadMore() {

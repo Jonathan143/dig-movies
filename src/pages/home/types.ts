@@ -21,10 +21,15 @@ export interface MovieInfo {
   vote_average: number
   /** 评分数 */
   vote_count: number
+  /** 媒体类型 */
+  media_type?: string
 }
 
 /** 媒体类型 */
 export type MediaType = 'all' | 'movie' | 'tv' | 'person'
+
+/** 媒体类型 */
+export type LikeMediaType = 'movie' | 'tv'
 
 /** 时间类型 */
 export type TimeWindow = 'day' | 'week'

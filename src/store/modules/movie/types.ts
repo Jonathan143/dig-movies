@@ -2,4 +2,10 @@
 
 export interface MovieState {
   genres: Record<string, string>
+  /**
+   * file_size: `w200` | `w500` | `w440_and_h660_face` | `original`
+   *
+   * 大部分场景推荐使用 `w440_and_h660_face`
+   */
+  baseImageUrl: string
 }

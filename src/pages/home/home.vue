@@ -17,7 +17,11 @@
       </div>
       <scroll-view scroll-x>
         <div class="flex px-6">
-          <div v-for="media of mediaList" :key="media.id" class="mr-6">
+          <div
+            v-for="media of mediaList"
+            :key="media.id"
+            class="mr-6"
+            @click="goMovieDetailPage(media)">
             <div class="text-0 relative">
               <image
                 class="rounded-22px h-65 w-50"
@@ -41,7 +45,11 @@
       <div class="p-6 text-24px">即将上映</div>
       <scroll-view scroll-x>
         <div class="flex px-6">
-          <div v-for="media of upcoming" :key="media.id" class="mr-6">
+          <div
+            v-for="media of upcoming"
+            :key="media.id"
+            class="mr-6"
+            @click="goMovieDetailPage(media)">
             <div class="text-0 relative">
               <image
                 class="rounded-22px h-65 w-50"
@@ -74,6 +82,7 @@
 import Container from './components/Container.vue'
 import type { MediaType, MovieInfo, TimeWindow } from './types'
 
+const router = useRouter()
 const { isLoading, toggleLoading } = useLoading()
 const mediaType = ref<MediaType>('all')
 const timeWindow = ref<TimeWindow>('day')
@@ -89,6 +98,12 @@ const tabList = [
 function onTabChange({ key = 'day' }, index: number) {
   timeWindow.value = key as TimeWindow
   reFindTrending()
+}
+
+function goMovieDetailPage({ id, media_type = 'movie' }: MovieInfo) {
+  console.log(`/pages/detail/${media_type}`)
+
+  router.push({ url: `/pages/detail/${media_type}`, params: { id: `${id}` } })
 }
 
 async function reFindTrending() {

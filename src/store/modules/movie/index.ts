@@ -32,6 +32,7 @@ export const useMovieStore = defineStore('movie', {
       '10768': 'War & Politics',
       '10770': '电视电影',
     },
+    baseImageUrl: 'https://image.tmdb.org/t/p/',
   }),
 
   getters: {},
