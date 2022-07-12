@@ -40,6 +40,12 @@
       "style": {
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/detail/tv",
+      "style": {
+        "navigationStyle": "custom"
+      }
     }
   ],
   "tabBar": {

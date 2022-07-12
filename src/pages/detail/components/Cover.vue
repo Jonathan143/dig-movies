@@ -29,18 +29,10 @@
       </div>
 
       <div
-        class="flex bg-light-50 bg-opacity-11 rounded-11px mt-8 text-center py-6 text-14px w-4/5 items-center backdrop-blur backdrop-filter">
-        <div class="flex-1">
-          <div class="mb-2 opacity-80 text-12px">时长</div>
-          <div>{{ computedDuration(data.runtime) }}</div>
-        </div>
-        <div class="flex-1">
-          <div class="mb-2 opacity-80 text-12px">上映时间</div>
-          <div>{{ data.release_date }}</div>
-        </div>
-        <div class="flex-1">
-          <div class="mb-2 opacity-80 text-12px">票房</div>
-          <div>{{ transformAmount(data.revenue || 0) }}</div>
+        class="flex bg-light-50 bg-opacity-11 rounded-t-11px mt-8 text-center py-6 text-14px w-4/5 items-center backdrop-blur backdrop-filter">
+        <div v-for="cardItem of card" :key="cardItem.label" class="flex-1">
+          <div class="mb-2 opacity-80 text-12px">{{ cardItem.label }}</div>
+          <div>{{ cardItem.value }}</div>
         </div>
       </div>
     </div>
@@ -48,11 +40,12 @@
 </template>
 
 <script setup lang="ts">
-import type { MovieItem } from '../types'
+import type { CardItem, MovieItem } from '../types'
 import { transformAmount } from '@/utils/transform'
 
 const props = defineProps<{
   data: MovieItem
+  card: CardItem[]
 }>()
 
 const { baseImageUrl } = useMovieStore()

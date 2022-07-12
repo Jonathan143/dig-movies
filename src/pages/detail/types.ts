@@ -1,5 +1,10 @@
 import type { MovieInfo } from '../home/types'
 
+export interface CardItem {
+  label: string
+  value: string | number
+}
+
 export interface GenreItem {
   name: string
   id: number

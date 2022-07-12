@@ -16,30 +16,26 @@
 <script setup lang="ts">
 import type { CardItem, MovieItem } from './types'
 import Cover from './components/Cover.vue'
-import { transformAmount } from '@/utils/transform'
 
 const movieId = ref('')
 const movieDetail = ref<MovieItem>({ vote_average: 0 } as MovieItem)
 const cardList = ref<CardItem[]>([])
-
-function computedDuration(minute: number) {
-  return `${~~(minute / 60)}h${minute % 60}m`
-}
 
 async function reFindMovieDetail() {
   const [err, data] = await request({
     url: 'post/movie_db',
     method: 'POST',
     data: {
-      api: `/movie/${movieId.value}`,
+      api: `/tv/${movieId.value}`,
     },
   })
   if (!err) {
     movieDetail.value = data
+    const { first_air_date, last_air_date } = data
     cardList.value = [
-      { label: '时长', value: computedDuration(data.runtime) },
-      { label: '上映时间', value: data.release_date },
-      { label: '票房', value: transformAmount(data.revenue || 0) },
+      { label: '首映', value: first_air_date },
+      { label: '最后更新', value: last_air_date },
+      { label: '票房', value: '' },
     ]
   }
 }
