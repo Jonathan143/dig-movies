@@ -22,20 +22,14 @@ const movieDetail = ref<MovieItem>({ vote_average: 0 } as MovieItem)
 const cardList = ref<CardItem[]>([])
 
 async function reFindMovieDetail() {
-  const [err, data] = await request({
-    url: 'post/movie_db',
-    method: 'POST',
-    data: {
-      api: `/tv/${movieId.value}`,
-    },
-  })
+  const [err, data] = await requestMovieDB(`/tv/${movieId.value}`)
   if (!err) {
     movieDetail.value = data
-    const { first_air_date, last_air_date } = data
+    const { first_air_date, last_air_date, seasons = [] } = data
     cardList.value = [
       { label: '首映', value: first_air_date },
       { label: '最后更新', value: last_air_date },
-      { label: '票房', value: '' },
+      { label: '当前季', value: seasons[seasons.length - 1]?.name },
     ]
   }
 }

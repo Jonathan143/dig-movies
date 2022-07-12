@@ -16,7 +16,7 @@
           name="line-md:loading-twotone-loop" />
       </div>
       <scroll-view scroll-x>
-        <div class="flex px-6">
+        <div class="flex min-h-75 px-6">
           <div
             v-for="media of mediaList"
             :key="media.id"
@@ -110,14 +110,9 @@ async function reFindTrending() {
   if (isLoading.value) return
 
   toggleLoading()
-  const [err, data] = await request({
-    url: 'post/movie_db',
-    method: 'POST',
-    data: {
-      api: `/trending/${mediaType.value}/${timeWindow.value}`,
-      params: {},
-    },
-  })
+  const [err, data] = await requestMovieDB(
+    `/trending/${mediaType.value}/${timeWindow.value}`,
+  )
   if (err) {
     console.log(err)
   } else {
@@ -130,14 +125,7 @@ async function reFindTrending() {
 
 /** 即将上映 */
 async function reFindUpcoming() {
-  const [err, data] = await request({
-    url: 'post/movie_db',
-    method: 'POST',
-    data: {
-      api: `/movie/upcoming`,
-      params: { page: 1 },
-    },
-  })
+  const [err, data] = await requestMovieDB(`/movie/upcoming`, { page: 1 })
   if (err) {
     console.log(err)
   } else {

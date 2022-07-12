@@ -96,15 +96,8 @@ async function loadMore() {
   isLoadError.value = false
   toggleLoading()
   const { index } = page.value
-  const [err, data] = await request({
-    url: 'post/movie_db',
-    method: 'POST',
-    data: {
-      api: `/${activeType.value}/popular`,
-      params: {
-        page: index,
-      },
-    },
+  const [err, data] = await requestMovieDB(`/${activeType.value}/popular`, {
+    page: index,
   })
   if (!err) {
     const { results, total_results, total_pages } = data

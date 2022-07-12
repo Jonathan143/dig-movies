@@ -1,4 +1,6 @@
 <template>
+  <a-navbar />
+
   <div
     class="bg-cover bg-no-repeat h-4/5 w-full text-light-50"
     :style="bgStyle">
@@ -29,7 +31,7 @@
       </div>
 
       <div
-        class="flex bg-light-50 bg-opacity-11 rounded-t-11px mt-8 text-center py-6 text-14px w-4/5 items-center backdrop-blur backdrop-filter">
+        class="flex bg-light-50 bg-opacity-11 rounded-11px mt-8 text-center py-6 text-14px w-4/5 items-center backdrop-blur backdrop-filter">
         <div v-for="cardItem of card" :key="cardItem.label" class="flex-1">
           <div class="mb-2 opacity-80 text-12px">{{ cardItem.label }}</div>
           <div>{{ cardItem.value }}</div>
@@ -41,7 +43,6 @@
 
 <script setup lang="ts">
 import type { CardItem, MovieItem } from '../types'
-import { transformAmount } from '@/utils/transform'
 
 const props = defineProps<{
   data: MovieItem

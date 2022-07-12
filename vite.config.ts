@@ -15,7 +15,7 @@ export default defineConfig({
         'vue',
         'uni-app',
         {
-          '@/plugins/request': ['request'],
+          '@/plugins/request': ['request', 'requestMovieDB'],
           '@/hooks': ['useRouter', 'useLoading'],
           '@/store/modules': ['useUserStore', 'useMovieStore'],
         },

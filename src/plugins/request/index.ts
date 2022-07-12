@@ -38,3 +38,14 @@ export async function request<T = any>({
     return [err, null]
   }
 }
+
+export function requestMovieDB(api: string, params: Record<string, any> = {}) {
+  return request({
+    url: 'post/movie_db',
+    method: 'POST',
+    data: {
+      api,
+      params,
+    },
+  })
+}

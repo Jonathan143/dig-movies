@@ -27,19 +27,16 @@ function computedDuration(minute: number) {
 }
 
 async function reFindMovieDetail() {
-  const [err, data] = await request({
-    url: 'post/movie_db',
-    method: 'POST',
-    data: {
-      api: `/movie/${movieId.value}`,
-    },
-  })
+  const [err, data] = await requestMovieDB(`/movie/${movieId.value}`)
   if (!err) {
     movieDetail.value = data
     cardList.value = [
       { label: '时长', value: computedDuration(data.runtime) },
       { label: '上映时间', value: data.release_date },
-      { label: '票房', value: transformAmount(data.revenue || 0) },
+      {
+        label: '票房',
+        value: data.revenue ? transformAmount(data.revenue) : '暂无数据',
+      },
     ]
   }
 }
