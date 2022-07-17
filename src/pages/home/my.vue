@@ -44,6 +44,12 @@ async function onLoginClick() {
 }
 
 onLoad(() => {})
+
+onShareAppMessage(() => ({
+  title: '',
+  path: '/pages/home/home',
+  imageUrl: 'https://yun.yang143.cn/dig-movies/undraw_netflix.png',
+}))
 </script>
 
 <style lang="scss" scoped>

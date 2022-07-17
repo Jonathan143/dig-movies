@@ -43,6 +43,12 @@ const tabList = ref([
 function onTabChange(item: Record<string, any>, index: number) {
   console.log(item, index)
 }
+
+onShareAppMessage(() => ({
+  title: '',
+  path: '/pages/home/home',
+  imageUrl: 'https://yun.yang143.cn/dig-movies/undraw_netflix.png',
+}))
 </script>
 
 <style lang="scss" scoped></style>

@@ -16,3 +16,9 @@ export interface MovieItem extends MovieInfo {
   runtime: number
   revenue: number
 }
+
+export interface ImageItem {
+  file_path: string
+  width: number
+  height: number
+}

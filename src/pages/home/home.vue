@@ -138,6 +138,11 @@ onLoad(() => {
   reFindTrending()
   reFindUpcoming()
 })
+
+onShareAppMessage(() => ({
+  title: '',
+  imageUrl: 'https://yun.yang143.cn/dig-movies/undraw_netflix.png',
+}))
 </script>
 
 <style lang="scss" scoped></style>
